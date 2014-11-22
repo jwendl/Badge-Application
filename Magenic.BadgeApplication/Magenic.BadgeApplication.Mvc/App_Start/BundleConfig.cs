@@ -19,13 +19,13 @@ namespace Magenic.BadgeApplication
             Arg.IsNotNull(() => bundles);
 
             bundles.Add(new StyleBundle("~/Content/themes/base/css").IncludeT4MVC(
-                Links.Content.themes.@base.jquery_ui_all_css
+                Links.Content.themes.@base.all_css
             ));
 
             bundles.Add(new ScriptBundle("~/bundles/jquery").IncludeT4MVC(
-                Links.Scripts.jquery_1_10_2_js,
+                Links.Scripts.jquery_2_1_1_js,
                 Links.Scripts.jquery_unobtrusive_ajax_js,
-                Links.Scripts.jquery_ui_1_10_4_js,
+                Links.Scripts.jquery_ui_1_11_2_js,
                 Links.Scripts.MicrosoftAjax_debug_js,
                 Links.Scripts.MicrosoftMvcAjax_debug_js,
                 Links.Scripts.MicrosoftMvcValidation_debug_js));
@@ -33,7 +33,7 @@ namespace Magenic.BadgeApplication
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
             bundles.Add(new ScriptBundle("~/bundles/modernizr").IncludeT4MVC(
-                Links.Scripts.modernizr_2_6_2_js));
+                Links.Scripts.modernizr_2_8_3_js));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").IncludeT4MVC(
                 Links.Scripts.bootstrap_js,
@@ -64,7 +64,7 @@ namespace Magenic.BadgeApplication
             ));
 
             bundles.Add(new ScriptBundle("~/bundles/knockout").IncludeT4MVC(
-                Links.Scripts.knockout_3_0_0_debug_js
+                Links.Scripts.knockout_3_2_0_debug_js
             ));
 
             bundles.Add(new ScriptBundle("~/bundles/badgePage").IncludeT4MVC(

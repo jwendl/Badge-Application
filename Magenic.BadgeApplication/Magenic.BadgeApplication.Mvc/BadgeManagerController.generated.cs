@@ -3,8 +3,8 @@
 // Don't change it directly as your change would get overwritten.  Instead, make changes
 // to the .tt file (i.e. the T4 template) and save it to regenerate this file.
 
-// Make sure the compiler doesn't complain about missing Xml comments
-#pragma warning disable 1591
+// Make sure the compiler doesn't complain about missing Xml comments and CLS compliance
+#pragma warning disable 1591, 3008, 3009
 #region T4MVC
 
 using System;
@@ -13,6 +13,7 @@ using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Hosting;
 using System.Web.Mvc;
@@ -38,10 +39,22 @@ namespace Magenic.BadgeApplication.Controllers
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        protected RedirectToRouteResult RedirectToAction(Task<ActionResult> taskResult)
+        {
+            return RedirectToAction(taskResult.Result);
+        }
+
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         protected RedirectToRouteResult RedirectToActionPermanent(ActionResult result)
         {
             var callInfo = result.GetT4MVCResult();
             return RedirectToRoutePermanent(callInfo.RouteValueDictionary);
+        }
+
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        protected RedirectToRouteResult RedirectToActionPermanent(Task<ActionResult> taskResult)
+        {
+            return RedirectToActionPermanent(taskResult.Result);
         }
 
         [NonAction]
@@ -264,8 +277,10 @@ namespace Magenic.BadgeApplication.Controllers
     {
         public T4MVC_BadgeManagerController() : base(Dummy.Instance) { }
 
+        [NonAction]
         partial void IndexOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
 
+        [NonAction]
         public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> Index()
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Index);
@@ -273,8 +288,10 @@ namespace Magenic.BadgeApplication.Controllers
             return System.Threading.Tasks.Task.FromResult(callInfo as ActionResult);
         }
 
+        [NonAction]
         partial void ManageActivitiesOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
 
+        [NonAction]
         public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> ManageActivities()
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ManageActivities);
@@ -282,8 +299,10 @@ namespace Magenic.BadgeApplication.Controllers
             return System.Threading.Tasks.Task.FromResult(callInfo as ActionResult);
         }
 
+        [NonAction]
         partial void AddBadgeOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
 
+        [NonAction]
         public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> AddBadge()
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.AddBadge);
@@ -291,8 +310,10 @@ namespace Magenic.BadgeApplication.Controllers
             return System.Threading.Tasks.Task.FromResult(callInfo as ActionResult);
         }
 
+        [NonAction]
         partial void AddBadgePostOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Magenic.BadgeApplication.Models.BadgeEditViewModel badgeEditViewModel, System.Web.HttpPostedFileBase badgeImage);
 
+        [NonAction]
         public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> AddBadgePost(Magenic.BadgeApplication.Models.BadgeEditViewModel badgeEditViewModel, System.Web.HttpPostedFileBase badgeImage)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.AddBadgePost);
@@ -302,8 +323,10 @@ namespace Magenic.BadgeApplication.Controllers
             return System.Threading.Tasks.Task.FromResult(callInfo as ActionResult);
         }
 
+        [NonAction]
         partial void EditBadgeOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int id);
 
+        [NonAction]
         public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> EditBadge(int id)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.EditBadge);
@@ -312,8 +335,10 @@ namespace Magenic.BadgeApplication.Controllers
             return System.Threading.Tasks.Task.FromResult(callInfo as ActionResult);
         }
 
+        [NonAction]
         partial void EditBadgePostOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int id, Magenic.BadgeApplication.Models.BadgeEditViewModel badgeEditViewModel, System.Web.HttpPostedFileBase badgeImage);
 
+        [NonAction]
         public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> EditBadgePost(int id, Magenic.BadgeApplication.Models.BadgeEditViewModel badgeEditViewModel, System.Web.HttpPostedFileBase badgeImage)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.EditBadgePost);
@@ -324,8 +349,10 @@ namespace Magenic.BadgeApplication.Controllers
             return System.Threading.Tasks.Task.FromResult(callInfo as ActionResult);
         }
 
+        [NonAction]
         partial void ApproveCommunityBadgesOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
 
+        [NonAction]
         public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> ApproveCommunityBadges()
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ApproveCommunityBadges);
@@ -333,8 +360,10 @@ namespace Magenic.BadgeApplication.Controllers
             return System.Threading.Tasks.Task.FromResult(callInfo as ActionResult);
         }
 
+        [NonAction]
         partial void ApproveCommunityBadgesListOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
 
+        [NonAction]
         public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> ApproveCommunityBadgesList()
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ApproveCommunityBadgesList);
@@ -342,8 +371,10 @@ namespace Magenic.BadgeApplication.Controllers
             return System.Threading.Tasks.Task.FromResult(callInfo as ActionResult);
         }
 
+        [NonAction]
         partial void ApproveActivitiesOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
 
+        [NonAction]
         public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> ApproveActivities()
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ApproveActivities);
@@ -351,8 +382,10 @@ namespace Magenic.BadgeApplication.Controllers
             return System.Threading.Tasks.Task.FromResult(callInfo as ActionResult);
         }
 
+        [NonAction]
         partial void ApproveActivitiesListOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
 
+        [NonAction]
         public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> ApproveActivitiesList()
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ApproveActivitiesList);
@@ -360,8 +393,10 @@ namespace Magenic.BadgeApplication.Controllers
             return System.Threading.Tasks.Task.FromResult(callInfo as ActionResult);
         }
 
+        [NonAction]
         partial void ApproveActivityOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int submissionId);
 
+        [NonAction]
         public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> ApproveActivity(int submissionId)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ApproveActivity);
@@ -370,8 +405,10 @@ namespace Magenic.BadgeApplication.Controllers
             return System.Threading.Tasks.Task.FromResult(callInfo as ActionResult);
         }
 
+        [NonAction]
         partial void RejectActivityOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int submissionId);
 
+        [NonAction]
         public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> RejectActivity(int submissionId)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.RejectActivity);
@@ -380,8 +417,10 @@ namespace Magenic.BadgeApplication.Controllers
             return System.Threading.Tasks.Task.FromResult(callInfo as ActionResult);
         }
 
+        [NonAction]
         partial void ApproveBadgeSubmissionOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int badgeId);
 
+        [NonAction]
         public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> ApproveBadgeSubmission(int badgeId)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ApproveBadgeSubmission);
@@ -390,8 +429,10 @@ namespace Magenic.BadgeApplication.Controllers
             return System.Threading.Tasks.Task.FromResult(callInfo as ActionResult);
         }
 
+        [NonAction]
         partial void RejectBadgeSubmissionOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int badgeId);
 
+        [NonAction]
         public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> RejectBadgeSubmission(int badgeId)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.RejectBadgeSubmission);
@@ -400,8 +441,10 @@ namespace Magenic.BadgeApplication.Controllers
             return System.Threading.Tasks.Task.FromResult(callInfo as ActionResult);
         }
 
+        [NonAction]
         partial void DownloadImageTemplateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string imageTemplatePath);
 
+        [NonAction]
         public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> DownloadImageTemplate(string imageTemplatePath)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.DownloadImageTemplate);
@@ -414,4 +457,4 @@ namespace Magenic.BadgeApplication.Controllers
 }
 
 #endregion T4MVC
-#pragma warning restore 1591
+#pragma warning restore 1591, 3008, 3009

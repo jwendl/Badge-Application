@@ -1,6 +1,5 @@
 ﻿using Magenic.BadgeApplication.Common;
 using System.Web.Mvc;
-using CslaController = Csla.Web.Mvc.AsyncController;
 
 namespace Magenic.BadgeApplication.Controllers
 {

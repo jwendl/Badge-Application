@@ -1,4 +1,5 @@
-﻿//-----------------------------------------------------------------------
+﻿using Csla;
+//-----------------------------------------------------------------------
 // <copyright file="Controller.cs" company="Marimer LLC">
 //     Copyright (c) Marimer LLC. All rights reserved.
 //     Website: http://www.lhotka.net/cslanet/
@@ -11,13 +12,13 @@ using System.Web.Mvc;
 
 // This is temporarily here until we get the version of CSLA that has this.
 // TODO: remove this once CSLA .NET ASP.NET MVC 5 library has update.
-namespace Csla.Web.Mvc
+namespace Magenic.BadgeApplication.Controllers
 {
     /// <summary>
     /// Provides methods that respond to HTTP requests
     /// in an ASP.NET MVC web site.
     /// </summary>
-    public partial class AsyncController : System.Web.Mvc.AsyncController
+    public partial class CslaController : System.Web.Mvc.AsyncController
     {
         /// <summary>
         /// Performs a SaveAsync() operation on an
