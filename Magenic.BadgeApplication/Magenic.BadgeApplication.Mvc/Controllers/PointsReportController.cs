@@ -53,7 +53,7 @@ namespace Magenic.BadgeApplication.Controllers
                     pointsReport.Payout(AuthenticatedUser.EmployeeId, DateTime.UtcNow);
                 }
 
-                if (await SaveObjectAsync(allPayouts, true))
+                if (await SaveObjectAsync(allPayouts, false))
                 {
                     return RedirectToAction("Index", "PointsReport");
                 }
@@ -111,7 +111,7 @@ namespace Magenic.BadgeApplication.Controllers
             {
                 var item = await BadgeAwardEdit.GetBadgeAwardEditByIdAsync(badgeAwardEdit.Id);
                 item.AwardAmount = badgeAwardEdit.AwardAmount;
-                await SaveObjectAsync(item, true);
+                await SaveObjectAsync(item, false);
             }
 
             return RedirectToAction("Index", "PointsReport");

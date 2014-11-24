@@ -1,0 +1,49 @@
+﻿@using Magenic.BadgeApplication.BusinessLogic.Badge
+@using Magenic.BadgeApplication.Common.Enums
+@using Magenic.BadgeApplication.Resources
+@using Magenic.BadgeApplication.Models
+@using Csla.Web.Mvc
+@using Csla.Rules
+@using Csla
+@model MultipleActivityViewModel
+
+<div class="row">
+    <div class="col-md-5">
+        <div class="editor-label">
+            @Html.Label(ApplicationResources.SelectActivityLabel)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(mavm => mavm.SelectedActivityId, Model.AllActivities, new { @class = "form-control selectpicker show-tick" })
+        </div>
+        <div class="editor-label">
+            @Html.Label(ApplicationResources.SelectedEmployeesLabel)
+        </div>
+        <div class="editor-field">
+            @Html.ListBoxFor(mavm => mavm.SelectedEmployeeIds, Model.AllEmployees, new { @class = "form-control selectpicker show-tick", data_live_search = "true" })
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(mavm => mavm.ActivitySubmissionDate, ApplicationResources.ActivitySubmissionDateLabel)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(mavm => mavm.ActivitySubmissionDate, new { @class = "form-control datepicker" })
+            @Html.ValidationMessageFor(mavm => mavm.ActivitySubmissionDate)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(mavm => mavm.Notes, ApplicationResources.ActivitySubmissionNotesLabel)
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(mavm => mavm.Notes, new { @class = "form-control", rows = "6", cols = "10" })
+            @Html.ValidationMessageFor(mavm => mavm.Notes)
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    &nbsp;
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <input type="submit" class="btn btn-success" value="@ApplicationResources.SubmitButton" />
+    </div>
+</div>

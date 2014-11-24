@@ -50,7 +50,7 @@ namespace Magenic.BadgeApplication.Controllers
 
             var activityEdit = await ActivityEdit.GetActivityEditByIdAsync(submittedActivity.ActivityId);
             submittedActivity.EntryType = activityEdit.EntryType;
-            if (await SaveObjectAsync(submittedActivity, true))
+            if (await SaveObjectAsync(submittedActivity, false))
             {
                 return RedirectToAction(await Mvc.Activities.Actions.Index());
             }

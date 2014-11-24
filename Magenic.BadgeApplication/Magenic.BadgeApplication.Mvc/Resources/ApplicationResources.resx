@@ -456,4 +456,19 @@
   <data name="PointsReportExportHeaderUserName" xml:space="preserve">
     <value>User Name</value>
   </data>
+  <data name="MultipleActivityEntryHeader" xml:space="preserve">
+    <value>Multiple Activity Entry</value>
+  </data>
+  <data name="SelectActivityLabel" xml:space="preserve">
+    <value>Select Activity</value>
+  </data>
+  <data name="SelectedEmployeesLabel" xml:space="preserve">
+    <value>Select Employees</value>
+  </data>
+  <data name="SubmitMultipleActivities" xml:space="preserve">
+    <value>Multiple Activities</value>
+  </data>
+  <data name="MultipleActivityErrorMessage" xml:space="preserve">
+    <value>There was an error creating activity "{0}" for : {1}.</value>
+  </data>
 </root>

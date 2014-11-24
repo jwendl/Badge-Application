@@ -2,13 +2,16 @@
 using Csla.Web.Mvc;
 using EasySec.Encryption;
 using Magenic.BadgeApplication.Attributes;
+using Magenic.BadgeApplication.BusinessLogic.AccountInfo;
 using Magenic.BadgeApplication.BusinessLogic.Activity;
 using Magenic.BadgeApplication.BusinessLogic.Badge;
+using Magenic.BadgeApplication.Common;
 using Magenic.BadgeApplication.Common.Enums;
 using Magenic.BadgeApplication.Common.Interfaces;
 using Magenic.BadgeApplication.Exceptions;
 using Magenic.BadgeApplication.Extensions;
 using Magenic.BadgeApplication.Models;
+using Magenic.BadgeApplication.Resources;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -169,7 +172,7 @@ namespace Magenic.BadgeApplication.Controllers
                 {
                     be.Priority = Int32.MaxValue;
                 }
-            }, true))
+            }, false))
             {
                 return RedirectToAction(Mvc.BadgeManager.Index().Result);
             }
@@ -226,7 +229,7 @@ namespace Magenic.BadgeApplication.Controllers
             TryUpdateModel(badgeEditViewModel.Badge, "Badge");
             CheckForValidImage(badgeEditViewModel.Badge);
 
-            if (await SaveObjectAsync(badgeEditViewModel.Badge, true))
+            if (await SaveObjectAsync(badgeEditViewModel.Badge, false))
             {
                 return RedirectToAction(Mvc.BadgeManager.Index().Result);
             }
@@ -287,6 +290,70 @@ namespace Magenic.BadgeApplication.Controllers
         }
 
         /// <summary>
+        /// Manages multiple activities.
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [HasPermission(AuthorizationActions.GetObject, typeof(SubmittedActivityCollection))]
+        public async virtual Task<ActionResult> MultipleActivities()
+        {
+            var allActivities = await ActivityCollection.GetAllActivitiesAsync(false);
+            var allEmployees = await UserCollection.GetAllAvailabileUsersForCurrentUserAsync();
+            var multipleActivityViewModel = new MultipleActivityViewModel(allActivities, allEmployees);
+            return View(Mvc.BadgeManager.Views.MultipleActivities, multipleActivityViewModel);
+        }
+
+        /// <summary>
+        /// Manages multiple activities.
+        /// </summary>
+        /// <param name="multipleActivityViewModel">The multiple activity view model.</param>
+        /// <returns></returns>
+        [HttpPost]
+        [HandleModelStateException]
+        [HasPermission(AuthorizationActions.EditObject, typeof(SubmittedActivityCollection))]
+        public async virtual Task<ActionResult> AddMultipleActivities(MultipleActivityViewModel multipleActivityViewModel)
+        {
+            Arg.IsNotNull(() => multipleActivityViewModel);
+
+            var failedEmployeeIds = new List<int>();
+            foreach (var employeeId in multipleActivityViewModel.SelectedEmployeeIds)
+            {
+                var submittedActivity = SubmitActivity.CreateActivitySubmission(AuthenticatedUser.EmployeeId);
+                submittedActivity.ActivityId = multipleActivityViewModel.SelectedActivityId;
+                submittedActivity.Notes = multipleActivityViewModel.Notes;
+                submittedActivity.EmployeeId = employeeId;
+
+                var activityEdit = await ActivityEdit.GetActivityEditByIdAsync(submittedActivity.ActivityId);
+                submittedActivity.EntryType = activityEdit.EntryType;
+
+                if (!await SaveObjectAsync(submittedActivity, false))
+                {
+                    failedEmployeeIds.Add(submittedActivity.EmployeeId);
+                }
+            }
+
+            if (failedEmployeeIds.Count > 0)
+            {
+                var allEmployees = await UserCollection.GetAllAvailabileUsersForCurrentUserAsync();
+                var allActivities = await ActivityCollection.GetAllActivitiesAsync(false);
+                var employeeNames = new List<string>();
+                foreach (var employeeId in failedEmployeeIds)
+                {
+                    var employee = allEmployees.Where(ui => ui.EmployeeId == employeeId).Single();
+                    employeeNames.Add(employee.FullName);
+                }
+
+                var employeeNameOutput = String.Join(", ", employeeNames);
+                var activity = allActivities.Where(ai => ai.Id == multipleActivityViewModel.SelectedActivityId).Single();
+                var errorMessage = String.Format(ApplicationResources.MultipleActivityErrorMessage, activity.Name, employeeNameOutput);
+                ModelState.AddModelError("*", errorMessage);
+                return await MultipleActivities();
+            }
+
+            return RedirectToAction(Mvc.PointsReport.Index().Result);
+        }
+
+        /// <summary>
         /// Admins the activity.
         /// </summary>
         /// <param name="submissionId">The submission identifier.</param>
@@ -299,7 +366,7 @@ namespace Magenic.BadgeApplication.Controllers
             var activitiesToApprove = await ApproveActivityCollection.GetAllActivitiesToApproveAsync(AuthenticatedUser.EmployeeId);
             var activityItem = activitiesToApprove.Where(aai => aai.SubmissionId == submissionId).Single();
             activityItem.ApproveActivitySubmission(AuthenticatedUser.EmployeeId);
-            if (await SaveObjectAsync(activitiesToApprove, true))
+            if (await SaveObjectAsync(activitiesToApprove, false))
             {
                 return Json(new { Success = true });
             }
@@ -320,7 +387,7 @@ namespace Magenic.BadgeApplication.Controllers
             var activitiesToApprove = await ApproveActivityCollection.GetAllActivitiesToApproveAsync(AuthenticatedUser.EmployeeId);
             var activityItem = activitiesToApprove.Where(aai => aai.SubmissionId == submissionId).Single();
             activityItem.DenyActivitySubmission();
-            if (await SaveObjectAsync(activitiesToApprove, true))
+            if (await SaveObjectAsync(activitiesToApprove, false))
             {
                 return Json(new { Success = true });
             }
@@ -340,7 +407,7 @@ namespace Magenic.BadgeApplication.Controllers
             var badgeToApprove = await ApproveBadgeItem.GetBadgesToApproveByIdAsync(badgeId);
             badgeToApprove.ApproveBadge(AuthenticatedUser.EmployeeId);
 
-            if (await (SaveObjectAsync(badgeToApprove, true)))
+            if (await (SaveObjectAsync(badgeToApprove, false)))
             {
                 return Json(new { Success = true });
             }
@@ -359,7 +426,7 @@ namespace Magenic.BadgeApplication.Controllers
             var badgeToReject = await ApproveBadgeItem.GetBadgesToApproveByIdAsync(badgeId);
             badgeToReject.DenyBadge();
 
-            if (await (SaveObjectAsync(badgeToReject, true)))
+            if (await (SaveObjectAsync(badgeToReject, false)))
             {
                 return Json(new { Success = true });
             }

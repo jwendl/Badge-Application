@@ -40,7 +40,7 @@ namespace Magenic.BadgeApplication.Controllers
         {
             var activityEdit = ActivityEdit.CreateActivity();
             TryUpdateModel(activityEdit);
-            if (await SaveObjectAsync(activityEdit, true))
+            if (await SaveObjectAsync(activityEdit, false))
             {
                 return Json(new { Result = "OK", Record = activityEdit });
             }
@@ -69,7 +69,7 @@ namespace Magenic.BadgeApplication.Controllers
             {
                 return Json(new { Result = "ERROR", Message = "You do not have access to edit this object." });
             }
-            if (await SaveObjectAsync(activityEdit, true))
+            if (await SaveObjectAsync(activityEdit, false))
             {
                 return Json(new { Result = "OK" });
             }
@@ -91,7 +91,7 @@ namespace Magenic.BadgeApplication.Controllers
             }
 
             activityEdit.Delete();
-            await SaveObjectAsync(activityEdit, true);
+            await SaveObjectAsync(activityEdit, false);
 
             return Json(new { Result = "OK" });
         }

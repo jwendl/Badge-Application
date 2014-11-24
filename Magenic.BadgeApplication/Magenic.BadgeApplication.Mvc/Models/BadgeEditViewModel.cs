@@ -18,7 +18,6 @@ namespace Magenic.BadgeApplication.Models
         /// </summary>
         public BadgeEditViewModel()
         {
-            //SelectedActivityIds = new List<int>();
             this.Badge = ((BadgeEdit)BadgeEdit.CreateBadge());
         }
 
@@ -28,9 +27,7 @@ namespace Magenic.BadgeApplication.Models
         /// <param name="allActivities">All activities.</param>
         public BadgeEditViewModel(IActivityCollection allActivities)
         {
-            //AllActivities = new MultiSelectList(allActivities, "Id", "Name");
             AllActivities = new SelectList(allActivities, "Id", "Name");
-            //SelectedActivityIds = new List<int>();
         }
 
         /// <summary>
@@ -40,13 +37,11 @@ namespace Magenic.BadgeApplication.Models
         /// <param name="badgeActivities">The badge activities.</param>
         public BadgeEditViewModel(IActivityCollection allActivities, IBadgeActivityEditCollection badgeActivities)
         {
-            //SelectedActivityIds = badgeActivities.Select(bae => bae.ActivityId).ToList();
             SelectedActivityId = badgeActivities.Select(bae => bae.ActivityId).FirstOrDefault();
             var selectedValues = badgeActivities
                 .Join(allActivities, bae => bae.ActivityId, ai => ai.Id, (bae, ai) => new { ai = ai })
                 .Select(anon => anon.ai);
 
-            //AllActivities = new MultiSelectList(allActivities, "Id", "Name", selectedValues);
             AllActivities = new SelectList(allActivities, "Id", "Name", selectedValues.FirstOrDefault());
         }
 
@@ -56,8 +51,6 @@ namespace Magenic.BadgeApplication.Models
         /// <value>
         /// All activities.
         /// </value>
-        // TODO: when the application supports multiple selections, then switch the SelectList with a MultiSelectList
-        //public MultiSelectList AllActivities { get; private set; }
         public SelectList AllActivities { get; private set; }
 
         /// <summary>

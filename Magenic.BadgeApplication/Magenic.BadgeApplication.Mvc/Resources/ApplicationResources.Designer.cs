@@ -664,6 +664,24 @@ namespace Magenic.BadgeApplication.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Multiple Activity Entry.
+        /// </summary>
+        public static string MultipleActivityEntryHeader {
+            get {
+                return ResourceManager.GetString("MultipleActivityEntryHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There was an error creating activity &quot;{0}&quot; for : {1}..
+        /// </summary>
+        public static string MultipleActivityErrorMessage {
+            get {
+                return ResourceManager.GetString("MultipleActivityErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Paid Out.
         /// </summary>
         public static string PaidOutRowHeader {
@@ -997,6 +1015,24 @@ namespace Magenic.BadgeApplication.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select Activity.
+        /// </summary>
+        public static string SelectActivityLabel {
+            get {
+                return ResourceManager.GetString("SelectActivityLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select Employees.
+        /// </summary>
+        public static string SelectedEmployeesLabel {
+            get {
+                return ResourceManager.GetString("SelectedEmployeesLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to All.
         /// </summary>
         public static string ShowAllCommunityBadges {
@@ -1047,6 +1083,15 @@ namespace Magenic.BadgeApplication.Resources {
         public static string SubmitCompletedActivityHeader {
             get {
                 return ResourceManager.GetString("SubmitCompletedActivityHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Multiple Activities.
+        /// </summary>
+        public static string SubmitMultipleActivities {
+            get {
+                return ResourceManager.GetString("SubmitMultipleActivities", resourceCulture);
             }
         }
         

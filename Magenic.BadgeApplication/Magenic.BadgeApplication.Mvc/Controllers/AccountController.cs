@@ -49,7 +49,7 @@ namespace Magenic.BadgeApplication.Controllers
         {
             var accountInfo = await AccountInfoEdit.GetAccountInfoForEmployee(AuthenticatedUser.EmployeeId);
             accountInfo.PointPayoutThreshold = pointPayoutThreshold;
-            if (!await SaveObjectAsync(accountInfo, true))
+            if (!await SaveObjectAsync(accountInfo, false))
             {
                 return new HttpStatusCodeResult(500, ApplicationResources.InvalidPayoutThreshold);
             }

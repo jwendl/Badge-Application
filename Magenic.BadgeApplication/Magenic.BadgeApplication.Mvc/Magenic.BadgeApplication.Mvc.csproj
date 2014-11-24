@@ -273,6 +273,7 @@
     <Compile Include="Models\LeaderboardIndexViewModel.cs" />
     <Compile Include="Models\LeaderboardRankViewModel.cs" />
     <Compile Include="Models\LogOnViewModel.cs" />
+    <Compile Include="Models\MultipleActivityViewModel.cs" />
     <Compile Include="Models\PointsReportExtractModel.cs" />
     <Compile Include="Models\SubmitActivityViewModel.cs" />
     <Compile Include="PointsReportController.generated.cs">
@@ -785,6 +786,8 @@
     <Content Include="Views\PointsReport\BadgeAwards.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\BadgeAwardEditCollection.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\BadgeAwardEdit.cshtml" />
+    <Content Include="Views\BadgeManager\MultipleActivities.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\MultipleActivityViewModel.cshtml" />
     <None Include="Web.QA.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

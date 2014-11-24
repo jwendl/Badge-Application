@@ -80,6 +80,13 @@ namespace Magenic.BadgeApplication.Controllers
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> AddMultipleActivities()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.AddMultipleActivities);
+            return System.Threading.Tasks.Task.FromResult(callInfo as ActionResult);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> ApproveActivity()
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ApproveActivity);
@@ -139,6 +146,8 @@ namespace Magenic.BadgeApplication.Controllers
             public readonly string ApproveCommunityBadgesList = "ApproveCommunityBadgesList";
             public readonly string ApproveActivities = "ApproveActivities";
             public readonly string ApproveActivitiesList = "ApproveActivitiesList";
+            public readonly string MultipleActivities = "MultipleActivities";
+            public readonly string AddMultipleActivities = "AddMultipleActivities";
             public readonly string ApproveActivity = "ApproveActivity";
             public readonly string RejectActivity = "RejectActivity";
             public readonly string ApproveBadgeSubmission = "ApproveBadgeSubmission";
@@ -159,6 +168,8 @@ namespace Magenic.BadgeApplication.Controllers
             public const string ApproveCommunityBadgesList = "ApproveCommunityBadgesList";
             public const string ApproveActivities = "ApproveActivities";
             public const string ApproveActivitiesList = "ApproveActivitiesList";
+            public const string MultipleActivities = "MultipleActivities";
+            public const string AddMultipleActivities = "AddMultipleActivities";
             public const string ApproveActivity = "ApproveActivity";
             public const string RejectActivity = "RejectActivity";
             public const string ApproveBadgeSubmission = "ApproveBadgeSubmission";
@@ -193,6 +204,14 @@ namespace Magenic.BadgeApplication.Controllers
             public readonly string id = "id";
             public readonly string badgeEditViewModel = "badgeEditViewModel";
             public readonly string badgeImage = "badgeImage";
+        }
+        static readonly ActionParamsClass_AddMultipleActivities s_params_AddMultipleActivities = new ActionParamsClass_AddMultipleActivities();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_AddMultipleActivities AddMultipleActivitiesParams { get { return s_params_AddMultipleActivities; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_AddMultipleActivities
+        {
+            public readonly string multipleActivityViewModel = "multipleActivityViewModel";
         }
         static readonly ActionParamsClass_ApproveActivity s_params_ApproveActivity = new ActionParamsClass_ApproveActivity();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -256,6 +275,7 @@ namespace Magenic.BadgeApplication.Controllers
                 public readonly string EditBadge = "EditBadge";
                 public readonly string Index = "Index";
                 public readonly string ManageActivities = "ManageActivities";
+                public readonly string MultipleActivities = "MultipleActivities";
             }
             public readonly string _ActivitiesForApproval = "~/Views/BadgeManager/_ActivitiesForApproval.cshtml";
             public readonly string _AdminBadgeList = "~/Views/BadgeManager/_AdminBadgeList.cshtml";
@@ -269,6 +289,7 @@ namespace Magenic.BadgeApplication.Controllers
             public readonly string EditBadge = "~/Views/BadgeManager/EditBadge.cshtml";
             public readonly string Index = "~/Views/BadgeManager/Index.cshtml";
             public readonly string ManageActivities = "~/Views/BadgeManager/ManageActivities.cshtml";
+            public readonly string MultipleActivities = "~/Views/BadgeManager/MultipleActivities.cshtml";
         }
     }
 
@@ -390,6 +411,29 @@ namespace Magenic.BadgeApplication.Controllers
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ApproveActivitiesList);
             ApproveActivitiesListOverride(callInfo);
+            return System.Threading.Tasks.Task.FromResult(callInfo as ActionResult);
+        }
+
+        [NonAction]
+        partial void MultipleActivitiesOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> MultipleActivities()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.MultipleActivities);
+            MultipleActivitiesOverride(callInfo);
+            return System.Threading.Tasks.Task.FromResult(callInfo as ActionResult);
+        }
+
+        [NonAction]
+        partial void AddMultipleActivitiesOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Magenic.BadgeApplication.Models.MultipleActivityViewModel multipleActivityViewModel);
+
+        [NonAction]
+        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> AddMultipleActivities(Magenic.BadgeApplication.Models.MultipleActivityViewModel multipleActivityViewModel)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.AddMultipleActivities);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "multipleActivityViewModel", multipleActivityViewModel);
+            AddMultipleActivitiesOverride(callInfo, multipleActivityViewModel);
             return System.Threading.Tasks.Task.FromResult(callInfo as ActionResult);
         }
 
